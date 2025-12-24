@@ -3,7 +3,7 @@ version: "3"
 services:
   velocity:
     # 你的镜像名
-    image: my-velocity-image:v1
+    image: ghcr.io/inknight-laptop/inkpot-minecraft-node:latest
     container_name: velocity_proxy
     ports:
       - "25577:25577"
@@ -11,9 +11,7 @@ services:
     volumes:
       # 【关键】左边是宿主机路径，右边是容器路径
       # 这样容器启动时，会直接读取宿主机 velocity-data/plugins 里的 jar 包
-      - ./velocity-data/plugins:/server/plugins
-      - ./velocity-data/logs:/server/logs
-      - ./velocity-data/velocity.toml:/server/velocity.toml
+      - ./velocity-data:/server
     environment:
       - MIN_MEM=512M
       - MAX_MEM=1G
